@@ -11,7 +11,7 @@ def calculate_words_vec(words):
     return embeddings.tolist()
 
 
-def get_yani(post_data):
+def get_yani(post_data="タバコ最高"):
     df = pd.read_csv("./static/yani-data.csv", index_col=0)
     data_vec = calculate_words_vec(post_data)
 
