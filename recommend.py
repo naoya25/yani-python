@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def calculate_words_vec(words):
-    model = SentenceTransformer("all-MiniLM-L6-v2")
+    model = SentenceTransformer("stsb-xlm-r-multilingual")
     embeddings = model.encode(words, convert_to_tensor=True)
     return embeddings.tolist()
 
