@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 
-def calculate_words_vec(words):
+def calculate_words_vec(words=None):
     model = SentenceTransformer("all-MiniLM-L6-v2")
 
     embeddings = model.encode(words, convert_to_tensor=True)
@@ -23,8 +23,3 @@ def get_yani(post_data="タバコ最高"):
             max_brand = df.loc[i, "銘柄"]
             max_score = score
     return {"brand": max_brand, "score": max_score}
-
-
-# post_data = "タバコ最高"
-# result = get_yani(post_data)
-# print(result)
