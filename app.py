@@ -1,7 +1,9 @@
 from flask import Flask, request, make_response, jsonify
+from flask_cors import CORS
 from recommend import get_yani
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
