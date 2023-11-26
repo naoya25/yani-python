@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def index():
-    return "flask running!"
+    return "flask running! ver 2.0"
 
 
 @app.route("/api/recommend", methods=["POST"])
