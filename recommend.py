@@ -1,12 +1,10 @@
-from sentence_transformers import util, SentenceTransformer
+from sentence_transformers import SentenceTransformer
 import scipy.spatial.distance
 import pandas as pd
-import numpy as np
 
 
-def calculate_words_vec(words=None):
+def calculate_words_vec(words):
     model = SentenceTransformer("all-MiniLM-L6-v2")
-
     embeddings = model.encode(words, convert_to_tensor=True)
     return embeddings.tolist()
 
