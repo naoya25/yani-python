@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
-from recomend import get_yani
+from recommend import get_yani
 
 app = Flask(__name__)
 CORS(app)
@@ -14,8 +14,8 @@ def index():
 @app.route("/api/recommend", methods=["POST"])
 def recommend():
     data = request.get_json()
-    user_data = data.get("user_data")
-    recommendation = get_yani(user_data)
+    post_data = data.get("postData")
+    recommendation = get_yani(post_data)
 
     return make_response(jsonify({"recommendation": recommendation}))
 
