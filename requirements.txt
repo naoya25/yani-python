@@ -5,4 +5,5 @@ Flask-Cors==4.0.0
 gensim==4.3.2
 mecab-python3==1.0.8
 scipy==1.11.4
-transformers==4.35.2
+sentence-transformers==2.2.2
+unidic-lite==1.0.8

@@ -4,7 +4,7 @@ import pandas as pd
 
 
 def calculate_words_vec(words):
-    model = SentenceTransformer("unidic-lite")
+    model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(words, convert_to_tensor=True)
     return embeddings.tolist()
 
@@ -23,4 +23,5 @@ def get_yani(post_data="タバコ最高"):
     return {"brand": max_brand, "score": max_score}
 
 
-print(get_yani(" タバコってなんか気づいたら吸っちゃってるんですよね。世界七不思議くらい不思議です"))
+if __name__ == "__main__":
+    print(get_yani("タバコってなんか気づいたら吸っちゃってるんですよね。世界七不思議くらい不思議です"))
