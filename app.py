@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from recommend import get_yani
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -21,4 +22,4 @@ def recommend():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=int(os.environ.get("PORT", 5000)))
