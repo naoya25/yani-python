@@ -1,18 +1,19 @@
-from transformers import T5Tokenizer, T5Model
-import scipy.spatial.distance
+from transformers import BertTokenizer, BertModel
 import torch
+import scipy.spatial.distance
 import pandas as pd
 
 
-def calculate_words_vec(words):
-    tokenizer = T5Tokenizer.from_pretrained("t5-base")
-    model = T5Model.from_pretrained("t5-base")
-    tokenized_text = tokenizer(words, return_tensors="pt")
+def calculate_words_vec(text):
+    tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
+    model = BertModel.from_pretrained("bert-base-uncased")
+    encoded_input = tokenizer(text, return_tensors="pt")
 
     with torch.no_grad():
-        output = model(**tokenized_text, decoder_input_ids=torch.tensor([[1]]))
+        output = model(**encoded_input)
 
-    vector = output.last_hidden_state.mean(dim=1).squeeze().numpy()
+    embeddings = output.last_hidden_state[:, 0, :]
+    vector = embeddings.tolist()[0]
     return vector
 
 
