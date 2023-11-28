@@ -1,12 +1,19 @@
-from sentence_transformers import SentenceTransformer
+from transformers import T5Tokenizer, T5Model
 import scipy.spatial.distance
+import torch
 import pandas as pd
 
 
 def calculate_words_vec(words):
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    embeddings = model.encode(words, convert_to_tensor=True)
-    return embeddings.tolist()
+    tokenizer = T5Tokenizer.from_pretrained("t5-base")
+    model = T5Model.from_pretrained("t5-base")
+    tokenized_text = tokenizer(words, return_tensors="pt")
+
+    with torch.no_grad():
+        output = model(**tokenized_text, decoder_input_ids=torch.tensor([[1]]))
+
+    vector = output.last_hidden_state.mean(dim=1).squeeze().numpy()
+    return vector
 
 
 def get_yani(post_data="タバコ最高"):
